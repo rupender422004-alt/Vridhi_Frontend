@@ -234,78 +234,60 @@ form input, form textarea {
 }
 
 /* =========================================
-   📱 FINAL AVERAGE MOBILE & TABLET FIX (999px and below)
+   📱 MODERN MOBILE & TABLET FIX (999px and below)
    ========================================= */
+
+/* Desktop par hamburger menu ko chupa ke rakho */
+.mobile-menu-toggle {
+  display: none;
+}
+
 @media screen and (max-width: 999px) {
-  
-  /* 1. Container ko free karo taaki scroll ban sake aur form overlap na ho */
-  .app-container {   
+
+  .app-container {
     flex-direction: column !important;
     height: auto !important;
     min-height: 100vh;
-    overflow-y: auto !important; 
+    overflow-y: auto !important;
     overflow-x: hidden !important;
   }
 
-  /* 2. Sidebar ko phone par top menu ki tarah set karo */
-  .sidebar {         
+  /* Hamburger Menu Button Styling */
+  .mobile-menu-toggle {
+    display: block; 
+    position: absolute; /* Header/Navbar me absolute rahega */
+    top: 20px;
+    left: 20px; 
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    z-index: 10001; /* Sabse upar */
+    cursor: pointer;
+  }
+
+  /* Sidebar ko default chupa do - Screen ke bahar bhej do */
+  .sidebar {
+    position: fixed !important; /* Fixed takih scroll hone par b aaye */
+    top: 0;
+    left: -100%; /* Shuruaat me screen ke left se bahar */
+    width: 260px !important; /* Fixed width */
+    height: 100vh !important;
+    z-index: 10000;
+    transition: left 0.3s ease-in-out !important; /* Smooth slide in/out */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2) !important;
+  }
+
+  /* Jab React se "mobile-open" class aayega toh left 0 karke screen pe laao */
+  .sidebar.mobile-open {
+    left: 0 !important;
+  }
+
+  /* Main content area */
+  .main-content {
     width: 100% !important;
     height: auto !important;
-    min-height: auto !important;
-    padding: 15px !important;
-    border-right: none !important;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
-    position: relative !important;
-    z-index: 10;
-  }
-
-  /* 🔥 Collapse hone par bhi mobile mein design nahi tootega */
-  .sidebar.collapsed {
-    width: 100% !important;
-    padding: 15px !important;
-  }
-  
-  /* 3. Menu items ko horizontal line me laao taaki lambi jagah na khaye */
-  .menu-items {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-  }
-
-  .menu-btn {
-    flex: 1 1 auto;
-    text-align: center !important;
-    padding: 10px !important;
-    font-size: 14px !important;
-  }
-
-  /* 4. Footer (Logout/Avatar) ko aamne-saamne set karo */
-  .sidebar-footer {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding-top: 15px !important;
-    border-top: 1px solid var(--border-color);
-  }
-
-  /* 5. Main content ko poori freedom de do */
-  .main-content {    
-    width: 100% !important;
-    height: auto !important;
+    padding-top: 60px !important; /* Hamburger menu ke liye jagah */
     overflow: visible !important;
-  }
-  
-  /* 6. Paddings thodi kam karo taaki choti screen (360px) pe form clearly dikhe */
-  .top-header {
-    padding: 20px 15px !important;
-  }
-
-  .content-area {
-    padding: 15px !important;
-  }
-
-  .campaign-card {
-    padding: 15px !important;
   }
 }
