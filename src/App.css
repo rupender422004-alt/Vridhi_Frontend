@@ -234,36 +234,48 @@ form input, form textarea {
 }
 
 /* =========================================
-   📱 MOBILE & TABLET RESPONSIVENESS FIXES 
+   📱 MOBILE & TABLET RESPONSIVENESS FIXES (Upto 1024px)
    ========================================= */
-/* Breakpoint 992px set kiya hai taaki 912px wali screen par bhi layout na toote */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1024px) {
   
+  /* Main wrapper ko column banayenge aur SCROLLING allow karenge */
   .app-container {   
     flex-direction: column !important;
     display: flex !important;
     height: auto !important;
+    min-height: 100vh;
+    overflow-y: auto !important; /* Ye scroll karne dega */
+    overflow-x: hidden;
   }
 
+  /* Sidebar ka layout set karenge par usko form ke upar overlap nahi hone denge */
   .sidebar {         
     width: 100% !important;
     height: auto !important;
     min-height: auto !important;
     position: relative !important;
-    padding-bottom: 20px;
-    border-right: none !important; /* Sidebar ke right ki line hata denge */
-    border-bottom: 1px solid #333; /* Niche ek line de denge separation ke liye */
+    border-right: none !important; 
+    border-bottom: 1px solid #333; 
+    z-index: 10;
   }
 
+  /* Form area ko poori screen lene denge */
   .main-content {    
     width: 100% !important;
-    margin-left: 0 !important; /* Agar sidebar ki wajah se margin tha toh usko zero kar diya */
+    margin-left: 0 !important; 
     padding: 20px 15px !important;
     box-sizing: border-box;
+    height: auto !important; /* Content katega nahi */
   }
 
   .form-container {
     width: 100% !important;
     max-width: 100% !important;
+  }
+
+  /* 🔥 Hamburger menu ko sabse aage (top layer) lane ke liye taaki click ho sake */
+  .navbar, header, nav {
+    z-index: 9999 !important;
+    position: relative;
   }
 }
