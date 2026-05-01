@@ -17,6 +17,10 @@ function App() {
 
   const [activeTab, setActiveTab] = useState('new'); 
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  
+  // 🔥 NEW: Mobile ke liye alag state (sliding menu control karne ke liye)
+  const [isMobileOpen, setIsMobileOpen] = useState(false); 
+  
   const [campaigns, setCampaigns] = useState([]);
 
   // Default Dark Mode & Save to LocalStorage logic restored
@@ -76,6 +80,12 @@ function App() {
     } catch (error) { return camp.target_url; }
   };
 
+  // 🔥 NEW: Tab change hone par mobile sidebar automatically band ho jayega
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setIsMobileOpen(false); 
+  };
+
   if (!isAuthenticated) {
     return (
       <div className={isDarkMode ? 'dark-theme' : 'light-theme'}>
@@ -86,9 +96,17 @@ function App() {
   }
 
   return (
-    <div className={`app-container ${isDarkMode ? 'dark-theme' : 'light-theme'}`} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div className={`app-container ${isDarkMode ? 'dark-theme' : 'light-theme'}`} style={{ display: 'flex', flexDirection: 'column', height: '100vh', position: 'relative' }}>
       <ToastContainer position="top-right" autoClose={3000} theme={isDarkMode ? 'dark' : 'light'} />
       
+      {/* 🔥 NEW: Mobile Hamburger Button (CSS isko sirf phone pe dikhayega) */}
+      <button 
+        className="mobile-menu-toggle"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
+        ☰
+      </button>
+
       <Navbar 
         user={user} 
         onLogout={handleLogout} 
@@ -99,16 +117,28 @@ function App() {
         toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
       />
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>
         
-        <div className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''}`} style={{ borderTop: 'none', display: 'flex', flexDirection: 'column' }}>
+        {/* 🔥 NEW: Black Overlay (Taki bahar click karne pe menu band ho jaye) */}
+        {isMobileOpen && (
+          <div 
+            onClick={() => setIsMobileOpen(false)}
+            style={{
+              position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
+              backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999
+            }}
+          />
+        )}
+
+        {/* 🔥 UPDATED: Sidebar className me 'mobile-open' add kiya hai */}
+        <div className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''} ${isMobileOpen ? 'mobile-open' : ''}`} style={{ borderTop: 'none', display: 'flex', flexDirection: 'column' }}>
           
           <div className="menu-items" style={{ marginTop: '20px' }}>
-            <button className={`menu-btn ${activeTab === 'new' ? 'active' : ''}`} onClick={() => setActiveTab('new')}>
+            <button className={`menu-btn ${activeTab === 'new' ? 'active' : ''}`} onClick={() => handleTabChange('new')}>
               <span className="hide-on-collapse">New Campaign</span>
             </button>
             
-            <button className={`menu-btn ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
+            <button className={`menu-btn ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => handleTabChange('dashboard')}>
               <span className="hide-on-collapse">Analytics Dashboard</span>
             </button>
           </div>
@@ -125,7 +155,7 @@ function App() {
                 <button
                   key={camp._id}
                   className={`menu-btn ${activeTab === camp._id ? 'active' : ''}`}
-                  onClick={() => setActiveTab(camp._id)}
+                  onClick={() => handleTabChange(camp._id)}
                   style={{ padding: '10px 15px', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', width: '100%', marginBottom: '5px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', borderRadius: '8px' }}
                   title={getSidebarTitle(camp)}
                 >
@@ -158,7 +188,6 @@ function App() {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );
