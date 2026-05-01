@@ -1,0 +1,234 @@
+/* GLOBAL THEMES (Light & Dark) */
+.light-theme {
+  --bg-color: #f4f7f6;
+  --sidebar-bg: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --hover-bg: #f1f2f6;
+}
+
+.dark-theme {
+  --bg-color: #121212;
+  --sidebar-bg: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-bg: #2d2d2d;
+  --border-color: #3d3d3d;
+  --hover-bg: #333333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* APP LAYOUT */
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- UPDATE THESE SPECIFIC SIDEBAR STYLES --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease; /* 🔥 Smooth sliding animation */
+  overflow: hidden;
+  white-space: nowrap; /* Text ko aglin line me tutne se rokega */
+}
+
+/* 🔥 NAYI CSS: Jab sidebar collapse hoga tab kya hoga */
+.sidebar.collapsed {
+  width: 80px; /* Chota size */
+  padding: 20px 10px; /* Padding kam kardi */
+}
+
+.sidebar.collapsed .sidebar-logo h2 {
+  font-size: 24px;
+}
+
+.sidebar.collapsed .menu-btn {
+  text-align: center;
+  padding: 15px 0;
+}
+
+/* Ye class magic karegi - Collapse hone par text hide kar degi */
+.sidebar.collapsed .hide-on-collapse {
+  display: none;
+  opacity: 0;
+}
+/* ------------------------------------------- */
+
+.sidebar-logo h2 {
+  margin: 0 0 40px 0;
+  font-size: 28px;
+  color: var(--text-primary);
+}
+
+.menu-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-btn {
+  padding: 15px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-btn:hover { background-color: var(--hover-bg); color: var(--text-primary); }
+.menu-btn.active { background-color: #007bff; color: white; }
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.theme-toggle-btn {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logout-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  overflow-y: auto;
+}
+
+.top-header {
+  padding: 30px 40px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+}
+
+.top-header h2 { margin: 0; color: var(--text-primary); }
+
+.content-area {
+  padding: 40px;
+  flex: 1;
+}
+
+/* 🔥 SKELETON LOADER ANIMATION */
+.skeleton-box {
+  height: 120px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--hover-bg) 25%, var(--border-color) 50%, var(--hover-bg) 75%);
+  background-size: 200% 100%;
+  animation: loadingSkeleton 1.5s infinite;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+@keyframes loadingSkeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* OVERRIDES FOR FORMS & CARDS */
+form input, form textarea {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.campaign-card, .history-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  
+  /* Sirf top, right aur bottom pe gray border rahega, Left wala JavaScript color se aayega */
+  border-top: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  
+  /* Left border ki thickness pakki karne ke liye */
+  border-left-width: 6px !important;
+  border-left-style: solid !important;
+}
+
+/* --- RESTORE SMART CARD STYLING --- */
+.campaign-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  border-left-width: 6px;
+  border-left-style: solid;
+  /* Inline style se border color dynamically aayega (blue, pink, etc.) */
+  padding: 20px 45px 20px 20px; /* Copy button ke liye right me jagah chodi hai */
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  position: relative;
+  line-height: 1.7;
+  font-size: 15px;
+  color: var(--text-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Bold text ko thoda aur sharp banane ke liye */
+.campaign-card strong {
+  color: var(--text-primary) !important;
+  font-weight: 800;
+}

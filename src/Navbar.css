@@ -1,0 +1,214 @@
+.main-navbar {
+  height: 70px;
+  background-color: var(--sidebar-bg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.nav-logo span { color: #007bff; }
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #007bff; }
+
+.nav-action-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.nav-action-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); }
+
+.nav-theme-btn {
+  background: var(--hover-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 20px;
+  border-left: 1px solid var(--border-color);
+}
+
+.nav-avatar {
+  width: 35px;
+  height: 35px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.nav-username {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.nav-logout-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.nav-logout-icon:hover { opacity: 1; }
+
+/* --- Logo Styling --- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Logo aur text ke beech ka space */
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.nav-logo-icon {
+  height: 100px; 
+  width: auto;
+  object-fit: contain;
+}
+
+/* --- Profile & Dropdown Styling --- */
+.nav-profile-container {
+  position: relative;
+  cursor: pointer;
+  padding-left: 20px;
+  border-left: 1px solid var(--border-color);
+  user-select: none; /* Text select na ho click karne par */
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 🔥 Dropdown Menu Box */
+.profile-dropdown {
+  position: absolute;
+  top: 50px; /* Navbar ke neeche theek set hoga */
+  right: 0;
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  padding: 15px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.dropdown-name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.dropdown-email {
+  margin: 4px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.dropdown-logout-btn {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.dropdown-logout-btn:hover {
+  background-color: #ff6b81;
+}
+
+/* Theme button adjustment for text */
+.nav-theme-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.nav-theme-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.nav-menu-toggle {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
