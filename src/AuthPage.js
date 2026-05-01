@@ -74,7 +74,7 @@ function AuthPage({ onLogin }) {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f4f7f6' }}>
             <div style={{ background: 'white', padding: '40px', borderRadius: '12px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', width: '100%', maxWidth: '400px' }}>
                 <h2 style={{ textAlign: 'center', color: '#2c3e50', marginBottom: '10px' }}>
-                    {isLogin ? '👋 Welcome Back' : '🚀 Create Account'}
+                    {isLogin ? 'Welcome Back' : 'Create Account'}
                 </h2>
                 <p style={{ textAlign: 'center', color: '#7f8c8d', marginBottom: '20px' }}>
                     {isLogin ? 'Login to access your AI Agents' : 'Start your free marketing journey'}
