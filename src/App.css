@@ -232,3 +232,43 @@ form input, form textarea {
   color: var(--text-primary) !important;
   font-weight: 800;
 }
+
+/* =========================================
+   📱 MOBILE RESPONSIVENESS FIXES (Phones & Tablets)
+   ========================================= */
+@media screen and (max-width: 768px) {
+  
+  /* Main Container ko Flex Column banayenge taaki side-by-side na rahe */
+  .app-container {   /* Apni main div ki class yahan daal */
+    flex-direction: column !important;
+    overflow-x: hidden;
+  }
+
+  /* Sidebar ko full width de denge ya zaroorat padne par hide kar denge */
+  .sidebar {         /* Apni sidebar ki class daal */
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto;
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  /* Main form area ko poori screen lene denge */
+  .main-content {    /* Apne form wale right area ki class daal */
+    width: 100% !important;
+    padding: 15px !important;
+    box-sizing: border-box;
+  }
+
+  /* Form ke dabbe (Inputs, Buttons) ko screen ke hisaab se adjust karenge */
+  .form-container {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  input, select, textarea, button {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px; /* Phone pe type karne mein aasan rahega */
+  }
+}
