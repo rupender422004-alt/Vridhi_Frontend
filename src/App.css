@@ -234,48 +234,45 @@ form input, form textarea {
 }
 
 /* =========================================
-   📱 MOBILE & TABLET RESPONSIVENESS FIXES (Upto 1024px)
+   📱 AVERAGE MOBILE & TABLET FIX (999px and below)
    ========================================= */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 999px) {
   
-  /* Main wrapper ko column banayenge aur SCROLLING allow karenge */
+  /* Main dabba vertically stack hoga (Upar menu, niche form) */
   .app-container {   
     flex-direction: column !important;
     display: flex !important;
-    height: auto !important;
-    min-height: 100vh;
-    overflow-y: auto !important; /* Ye scroll karne dega */
-    overflow-x: hidden;
+    overflow-x: hidden !important; /* Screen ke bahar kuch na bhage */
   }
 
-  /* Sidebar ka layout set karenge par usko form ke upar overlap nahi hone denge */
+  /* Sidebar form ke upar overlap nahi karega */
   .sidebar {         
     width: 100% !important;
     height: auto !important;
-    min-height: auto !important;
     position: relative !important;
-    border-right: none !important; 
-    border-bottom: 1px solid #333; 
-    z-index: 10;
+    z-index: 10 !important;
+    border-right: none !important;
+    padding-bottom: 10px !important;
   }
 
-  /* Form area ko poori screen lene denge */
+  /* Form area average phone ki poori width lega */
   .main-content {    
     width: 100% !important;
-    margin-left: 0 !important; 
-    padding: 20px 15px !important;
-    box-sizing: border-box;
-    height: auto !important; /* Content katega nahi */
+    margin: 0 !important; 
+    padding: 15px !important; /* Chote phone pe zyada margin screen kha jata hai */
+    box-sizing: border-box !important;
   }
 
-  .form-container {
+  /* Har input, button aur select box phone ki screen ke andar hi rahega */
+  .form-container, input, select, textarea, button {
     width: 100% !important;
     max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  /* 🔥 Hamburger menu ko sabse aage (top layer) lane ke liye taaki click ho sake */
+  /* Hamburger menu overlap issue fix */
   .navbar, header, nav {
     z-index: 9999 !important;
-    position: relative;
+    position: relative !important;
   }
 }
