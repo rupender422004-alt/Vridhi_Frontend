@@ -290,4 +290,44 @@ form input, form textarea {
     padding-top: 60px !important; /* Hamburger menu ke liye jagah */
     overflow: visible !important;
   }
+
+  /* =========================================
+     🔥 EXTRA MOBILE FIXES (Add inside existing 999px media query)
+     ========================================= */
+
+  /* 1. FORM FIX: Inputs ko side-by-side ki jagah upar-niche laayein */
+  form {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Agar fields kisi row div ke andar hain, toh unhe column banayein */
+  form div {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  input, select, textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 12px !important; /* Fields ke beech saaf gap */
+  }
+
+  /* 2. NAVBAR FIX: Hamburger aur Logo ka overlap theek karein */
+  .mobile-menu-toggle {
+    top: 18px !important;
+    left: 15px !important;
+    background: var(--card-bg) !important; /* Button ko thoda solid background diya */
+    padding: 4px 12px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+
+  /* Navbar ko thoda right shift kiya taaki button ke liye jagah bache */
+  .navbar, header {
+    padding-left: 75px !important; 
+    justify-content: flex-start !important;
+  }
 }
